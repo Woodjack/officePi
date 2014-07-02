@@ -1,14 +1,19 @@
-console.log(' ------------------------ ');
+//   Welcome
+//
 console.log(' ------- officePI ------- ');
-console.log(' **      THE SERVER    ** ');
+console.log(' **      overlord    ** ');
 console.log(' listening: http://localhost:7000');
 
+//  Create a socket.io server object and listen on port 7000 
+//
 var io = require('socket.io').listen(7000);
  
 io.sockets.on('connection', function (socket) {
   
   socket.on('checkIn', function(data) {
     console.log('  -- User checked in: ' + data);
-    socket.emit('pong', 'Justin Rocks');
+    socket.emit('updateLED', {color:'red'});
+
   });
+
 });
