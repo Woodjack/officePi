@@ -4,4 +4,4 @@ var piblaster = require("pi-blaster.js");
 piblaster.setPwm(22, 0.4);
 
 // Set second pin at 100%
-piblaster.setPwm(4, 0.2);
+piblaster.setPwm(4, 1);
