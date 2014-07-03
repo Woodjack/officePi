@@ -1,3 +1,4 @@
+var color;
 console.log('Hi');
 console.log('Which color do you wanna see???');
 console.log('[R] [G] [B]');
