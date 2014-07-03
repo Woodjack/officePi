@@ -24,15 +24,15 @@ var piblaster = require("pi-blaster.js");
     piblaster.setPwm(22, 1);
     piblaster.setPwm(17, 1);
     piblaster.setPwm(4, 0);
-  };
+  }
   else if( data == "green" ){
     piblaster.setPwm(22, 0);
     piblaster.setPwm(17, 1);
     piblaster.setPwm(4, 1);
-  };
+  }
   else{
     piblaster.setPwm(22, 1);
     piblaster.setPwm(17, 0);
     piblaster.setPwm(4, 1);    
-  };
+  }
 };
