@@ -6,4 +6,4 @@ piblaster.setPwm(22, 0);
 // Set second pin at 100%
 piblaster.setPwm(17, 1);
 
-piblaster.setPwm(4, 0);
+piblaster.setPwm(4, 1);
