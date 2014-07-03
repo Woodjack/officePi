@@ -35,4 +35,4 @@ var piblaster = require("pi-blaster.js");
     piblaster.setPwm(17, 0);
     piblaster.setPwm(4, 1);    
   }
-};
+}
