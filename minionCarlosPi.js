@@ -1,29 +1,7 @@
-//   Welcome
-//
-console.log(' ------------------------ ');
-console.log(' ------- officePI ------- ');
-console.log(' **       minion       ** ');
-console.log(' connecting: http://10.0.1.220:7000');
+var piblaster = require("pi-blaster.js");
 
-//  Create a socket.io client object and connect to overlord ip  
-//
-var clientio  = require('socket.io-client');
-var client    = clientio.connect('http://10.0.1.240:7000');
+// Set first pin at 40%
+piblaster.setPwm(0, 0.4);
 
-//  Emits message to overlord to checkin with comp name
-//
-client.emit('checkIn', 'minionCarlos-Pi');
-
-
-//********************
-//  MESSAGE HANDLERS
-
-//  On message updateLED, change LEd to the color in the data json object
-//
-client.on('updateLED', function(data) {
-  console.log('  -- chaging LED to: ', data);
-  
-  //  ********
-  // Carlos will add function to make the LED change to the color
-  //
-});
+// Set second pin at 100%
+piblaster.setPwm(1, 1);
