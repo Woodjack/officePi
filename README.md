@@ -15,3 +15,4 @@ commands include:
   socket.emit('updateLED, {color:'red'});
   
 ***OTHER CONTROLS***
+ make light turn red
