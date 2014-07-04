@@ -19,22 +19,22 @@ client.on('message', function(data) {
 client.on('updateLED', function(data) {
     
   console.log('  -- chaging LED to: ', data);
-  if( data == "red" ){
-    var piblaster = require("pi-blaster.js");
-    piblaster.setPwm(22, 1);
-    piblaster.setPwm(17, 1);
-    piblaster.setPwm(4, 0);
-  };
-  if( data == "green" ){
-    var piblaster = require("pi-blaster.js");
-    piblaster.setPwm(22, 0);
-    piblaster.setPwm(17, 1);
-    piblaster.setPwm(4, 1);
-  };
-  if( data == "blue" ){
+ // if( data == "red" ){
+ //   var piblaster = require("pi-blaster.js");
+ //   piblaster.setPwm(22, 1);
+ //   piblaster.setPwm(17, 1);
+ //   piblaster.setPwm(4, 0);
+ // };
+ // if( data == "green" ){
+ //   var piblaster = require("pi-blaster.js");
+ //   piblaster.setPwm(22, 0);
+ //   piblaster.setPwm(17, 1);
+//    piblaster.setPwm(4, 1);
+//  };
+//  if( data == "blue" ){
     var piblaster = require("pi-blaster.js");
     piblaster.setPwm(22, 1);
     piblaster.setPwm(17, 0);
     piblaster.setPwm(4, 1);    
-  };
+//  };
 });
