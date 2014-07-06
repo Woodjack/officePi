@@ -1,6 +1,13 @@
-var color;
-console.log('Hi');
-console.log('Which color do you wanna see???');
-console.log('[R] [G] [B]');
-color=prompt('Select:','');
-console.log(color);
+//To see if I can play with the time
+setTimeout(function () {
+setTimeout(function () {
+setTimeout(function () {
+  debugger;
+  console.log("turn off");
+}, 3000);
+  debugger;
+  console.log("blue");
+}, 3000);
+  console.log("green");
+}, 3000);
+console.log("red");
