@@ -1,7 +1,7 @@
 //it can run without connection with master
 console.log('***JUST FOR FUN***');
 var piblaster = require("pi-blaster.js");
-var a = "red";
+var a = "green";
 
 //  console.log("turn off");
 //    piblaster.setPwm(22, 1);
