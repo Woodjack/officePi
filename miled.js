@@ -26,9 +26,11 @@ client.on('updateLED', function(data) {
     piblaster.setPwm(22, 0);
     piblaster.setPwm(17, 1);
     piblaster.setPwm(4, 1);
-  } else {
+  } else if ( data.color === 'blue' ){
     piblaster.setPwm(22, 1);
     piblaster.setPwm(17, 0);
-    piblaster.setPwm(4, 1);    
+    piblaster.setPwm(4, 1);
+  } else {
+    console.log('I do not know this color');
   };
 });
