@@ -2,7 +2,6 @@
 console.log('***JUST FOR FUN***');
 var piblaster = require("pi-blaster.js");
 
-client.on('updateLED', function(data) {
 setTimeout(function () {
 setTimeout(function () {
 setTimeout(function () {
@@ -27,4 +26,3 @@ console.log("red");
 	piblaster.setPwm(22, 1);
 	piblaster.setPwm(17, 1);
 	piblaster.setPwm(4, 0);
-});
