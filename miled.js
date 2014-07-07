@@ -22,11 +22,11 @@ client.on('updateLED', function(data) {
     piblaster.setPwm(22, 1);
     piblaster.setPwm(17, 1);
     piblaster.setPwm(4, 0);
-  }; else if ( data === "green" ){
+  } else if ( data === "green" ){
     piblaster.setPwm(22, 0);
     piblaster.setPwm(17, 1);
     piblaster.setPwm(4, 1);
-  }; else ( data === "blue" ){
+  } else {
     piblaster.setPwm(22, 1);
     piblaster.setPwm(17, 0);
     piblaster.setPwm(4, 1);    
