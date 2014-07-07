@@ -33,8 +33,8 @@ client.on('updateLED', function(data) {
 //  };
 //  if( data == "blue" ){
     var piblaster = require("pi-blaster.js");
-    piblaster.setPwm(22, 1);
+    piblaster.setPwm(22, 0);
     piblaster.setPwm(17, 0);
-    piblaster.setPwm(4, 1);    
+    piblaster.setPwm(4, 0);    
 //  };
 });
