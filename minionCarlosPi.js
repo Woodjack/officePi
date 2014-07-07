@@ -1,11 +1,11 @@
 console.log(' ------------------------ ');
 console.log(' ------- officePI ------- ');
 console.log(' ** minionCarlosPi ** ');
-console.log(' connecting: http://10.0.1.220:7000');
+console.log(' connecting: http://10.0.1.240:7000');
 
 
 var clientio = require('socket.io-client');
-var client = clientio.connect('http://10.0.1.33:7000');
+var client = clientio.connect('http://10.0.1.240:7000');
 var piblaster = require("pi-blaster.js");
 
 client.emit('checkIn', 'clientName');
