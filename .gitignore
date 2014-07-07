@@ -6,7 +6,7 @@ npm-debug.log
 /test/packages/npm-test-depends-on-spark/which-spark.log
 /test/packages/test-package/random-data.txt
 /test/root
-/node_modeuls/
+/node_modules/
 /node_modules/ronn
 /node_modules/tap
 /node_modules/.bin
