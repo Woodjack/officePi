@@ -1,12 +1,12 @@
-
 console.log(' ------------------------ ');
 console.log(' ------- officePI ------- ');
-console.log(' ** minion ** ');
+console.log(' ** minionCarlosPi ** ');
 console.log(' connecting: http://10.0.1.220:7000');
 
 
 var clientio = require('socket.io-client');
-var client = clientio.connect('http://localhost:7000');
+var client = clientio.connect('http://10.0.1.33:7000');
+var piblaster = require("pi-blaster.js");
 
 client.emit('checkIn', 'clientName');
 
@@ -15,26 +15,22 @@ client.on('message', function(data) {
   console.log('message', data);
 });
 
-
 client.on('updateLED', function(data) {
     
-  console.log('  -- chaging LED to: ', data);
- // if( data == "red" ){
- //   var piblaster = require("pi-blaster.js");
- //   piblaster.setPwm(22, 1);
- //   piblaster.setPwm(17, 1);
- //   piblaster.setPwm(4, 0);
- // };
- // if( data == "green" ){
- //   var piblaster = require("pi-blaster.js");
- //   piblaster.setPwm(22, 0);
- //   piblaster.setPwm(17, 1);
-//    piblaster.setPwm(4, 1);
-//  };
-//  if( data == "blue" ){
-    var piblaster = require("pi-blaster.js");
+  //console.log('function: ', function(data));
+  if ( data.color === 'red' ){//Faltaban los 3 iguales
+    piblaster.setPwm(22, 1);
+    piblaster.setPwm(17, 1);
+    piblaster.setPwm(4, 0);
+  } else if ( data.color === 'green' ){
     piblaster.setPwm(22, 0);
+    piblaster.setPwm(17, 1);
+    piblaster.setPwm(4, 1);
+  } else if ( data.color === 'blue' ){
+    piblaster.setPwm(22, 1);
     piblaster.setPwm(17, 0);
-    piblaster.setPwm(4, 0);    
-//  };
+    piblaster.setPwm(4, 1);
+  } else {
+    console.log('I do not know this color');
+  };
 });
