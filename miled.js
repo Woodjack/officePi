@@ -18,11 +18,11 @@ client.on('message', function(data) {
 client.on('updateLED', function(data) {
     
   //console.log('function: ', function(data));
-  if ( data === 'red' ){//Faltaban los 3 iguales
+  if ( data.color === 'red' ){//Faltaban los 3 iguales
     piblaster.setPwm(22, 1);
     piblaster.setPwm(17, 1);
     piblaster.setPwm(4, 0);
-  } else if ( data === 'green' ){
+  } else if ( data.color === 'green' ){
     piblaster.setPwm(22, 0);
     piblaster.setPwm(17, 1);
     piblaster.setPwm(4, 1);
