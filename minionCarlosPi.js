@@ -73,7 +73,7 @@ client.on('updateLED', function(data) {
      }
     }
      console.log(count);
-     //piblaster.setPwm(4, count); 
+     piblaster.setPwm(17, count); 
     }, 1);
   } else {
     console.log('I do not know this color');
