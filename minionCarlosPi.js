@@ -32,8 +32,10 @@ client.on('updateLED', function(data) {
     piblaster.setPwm(4, 1);
   } else if ( data.color === 'crazy' ){
      setInterval(function(){
-       alert("Hello")
-       }, 3000);
+      blaster.setPwm(22, 0);
+      blaster.setPwm(17, 0);
+      blaster.setPwm(4, 0);
+      }, 3000);
   } else {
     console.log('I do not know this color');
   };
