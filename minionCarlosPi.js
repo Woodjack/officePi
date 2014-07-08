@@ -58,7 +58,7 @@ client.on('updateLED', function(data) {
     }, 3000);
   } else if ( data.color === 'crazier' ){
     setInterval(function(){
-     count = count + 1;
+     count = count + 0.01;
      console.log(count)
     }, 1);
   } else {
