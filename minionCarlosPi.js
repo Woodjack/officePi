@@ -60,7 +60,7 @@ client.on('updateLED', function(data) {
     setInterval(function(){
      count = count + 1;
      console.log(count)
-    }, 3000);
+    }, 1);
   } else {
     console.log('I do not know this color');
   };
