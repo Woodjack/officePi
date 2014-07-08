@@ -61,7 +61,7 @@ client.on('updateLED', function(data) {
      count = count + 1;
      console.log(count);
      }
-    }, 10);
+    }, 3000);
   } else {
     console.log('I do not know this color');
   };
