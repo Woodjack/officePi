@@ -7,6 +7,7 @@ console.log(' connecting: http://10.0.1.240:7000');
 var clientio = require('socket.io-client');
 var client = clientio.connect('http://10.0.1.240:7000');
 var piblaster = require("pi-blaster.js");
+var count = 0;
 
 client.emit('checkIn', 'clientName');
 
@@ -32,11 +33,12 @@ client.on('updateLED', function(data) {
     piblaster.setPwm(4, 1);
   } else if ( data.color === 'crazy' ){
     setInterval(function(){
-    piblaster.setPwm(22, 0);
-    piblaster.setPwm(17, 0);
-    piblaster.setPwm(4, 0);
-    console.log('I am crazy');
-      }, 3000);
+     count = count + 1;
+     piblaster.setPwm(22, 0);
+     piblaster.setPwm(17, 0);
+     piblaster.setPwm(4, 0);
+     console.log(count);
+    }, 3000);
   } else {
     console.log('I do not know this color');
   };
