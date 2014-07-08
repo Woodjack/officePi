@@ -15,7 +15,7 @@ io.sockets.on('connection', function (socket) {
     console.log('  -- User checked in: ' + data);
     // Sends message to the connected client
     //
-    socket.emit('updateLED', {color:'crazier'});
+    socket.emit('updateLED', {color:'crazy'});
 
   });
 
