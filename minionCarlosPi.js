@@ -35,7 +35,7 @@ client.on('updateLED', function(data) {
     piblaster.setPwm(22, 0);
     piblaster.setPwm(17, 0);
     piblaster.setPwm(4, 0);
-    consoloe.log('I am crazy');
+    console.log('I am crazy');
       }, 3000);
   } else {
     console.log('I do not know this color');
