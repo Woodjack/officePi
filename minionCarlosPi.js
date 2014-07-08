@@ -56,6 +56,31 @@ client.on('updateLED', function(data) {
       count = 0;
      }
     }, 3000);
+  } else if ( data.color === 'crazier' ){
+    setInterval(function(){
+     count = count + 1;
+     if (count === 1){
+      console.log('green');
+      piblaster.setPwm(22, 0);
+      piblaster.setPwm(17, 1);
+      piblaster.setPwm(4, 1);
+     } else if (count === 2){
+      console.log('blue');
+      piblaster.setPwm(22, 1);
+      piblaster.setPwm(17, 0);
+      piblaster.setPwm(4, 1);
+     } else if (count === 3){
+      console.log('red');
+      piblaster.setPwm(22, 1);
+      piblaster.setPwm(17, 1);
+      piblaster.setPwm(4, 0);
+      count = 0;
+     }
+     else{
+      console.log('out of time');
+      count = 0;
+     }
+    }, 100);
   } else {
     console.log('I do not know this color');
   };
