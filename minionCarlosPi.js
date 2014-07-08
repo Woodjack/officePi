@@ -68,7 +68,7 @@ client.on('updateLED', function(data) {
     }
     else {
      count = count - 0.001; 
-     if (count === 0){
+     if (count <= 0){
        flag = flag*-1;
      }
     }
