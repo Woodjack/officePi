@@ -8,6 +8,7 @@ var clientio = require('socket.io-client');
 var client = clientio.connect('http://10.0.1.240:7000');
 var piblaster = require("pi-blaster.js");
 var count = 0;
+var flag = 1;
 
 client.emit('checkIn', 'clientName');
 
@@ -59,13 +60,20 @@ client.on('updateLED', function(data) {
   } else if ( data.color === 'crazier' ){
     setInterval(function(){
      if (count >= 1){
-       count = 0;
+       flag = flag*-1;
      }
-     else {
-       count = count + 0.001;
+
+    if (falg === 1){
+     count = count + 0.001; 
+    }
+    else {
+     count = count - 0.001; 
+     if (count === 0){
+       flag = flag*-1;
      }
-     console.log(count)
-     piblaster.setPwm(4, count);
+    }
+     console.log(count);
+     //piblaster.setPwm(4, count); 
     }, 1);
   } else {
     console.log('I do not know this color');
