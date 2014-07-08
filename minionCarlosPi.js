@@ -73,8 +73,8 @@ client.on('updateLED', function(data) {
      }
     }
      console.log(count);
-     piblaster.setPwm(17, count); 
-     piblaster.setPwm(22, 1);
+     piblaster.setPwm(17, 1); 
+     piblaster.setPwm(22, count);
      piblaster.setPwm(4, 1-count);
     }, 1);
   } else {
