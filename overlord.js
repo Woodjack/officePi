@@ -7,7 +7,6 @@ console.log(' listening: http://localhost:7000');
 //  Create a socket.io server object and listen on port 7000 
 //
 var io = require('socket.io').listen(7000);
-<<<<<<< HEAD
 
 
 
@@ -17,18 +16,6 @@ var hue = require('hue.js');
 console.log('line 13')
 console.log(hue.turnOn);
 //console.log(hue.turnOff);
-
- 
-
-
-
-
-
-
-
-
-=======
->>>>>>> FETCH_HEAD
 io.sockets.on('connection', function (socket) {
  
 //  When a socket emit is recieved, then run this function
