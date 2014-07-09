@@ -56,7 +56,7 @@ client.on('updateLED', function(data) {
       console.log('out of time');
       count = 0;
      }
-    }, 700);
+    }, 10);
   } else if ( data.color === 'crazier' ){
     setInterval(function(){
      if (count >= 1){
