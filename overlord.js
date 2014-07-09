@@ -10,9 +10,6 @@ var io = require('socket.io').listen(7000);
 
 
 
-console.log('line 13')
-console.log(hue.turnOn);
-//console.log(hue.turnOff);
 io.sockets.on('connection', function (socket) {
  
 //  When a socket emit is recieved, then run this function
