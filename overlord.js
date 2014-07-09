@@ -10,9 +10,6 @@ var io = require('socket.io').listen(7000);
 
 
 
-
-var hue = require('hue.js');
-
 console.log('line 13')
 console.log(hue.turnOn);
 //console.log(hue.turnOff);
