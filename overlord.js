@@ -15,13 +15,9 @@ var hue = require('hue.js');
 
 console.log('line 13')
 console.log(hue.turnOn);
-console.log(hue.turnOff);
+//console.log(hue.turnOff);
 
  
-
-
-
-
 
 
 
