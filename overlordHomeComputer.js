@@ -39,17 +39,42 @@ var homeComputer = require('socket.io').listen(5000);
 
 homeComputer.sockets.on('connection', function (socket) {
  
-//  CHECKIN THE USER WHEN THE CONNECT
-//
+
+  //  CHECKIN THE USER WHEN THE CONNECT
+  //
   socket.on('checkIn', function(data) {
     console.log('  -- User checked into HOME COMPUTER: ' + data);
-    // Sends message to the connected client
-    //
-
   });
 
-  socket.on('')
 
+  //  VOICE COMMAND
+  //
+  socket.on('voice Command', function(data) {
+  	console.log( ' -- user sent a voice command' )
+  });
 
 
 });
+
+
+
+//  THIS IS FOR THE HOME Automation Service
+//
+//		HTTP FILES
+//  
+//		LISTENING ON PORT 80
+//		10.0.1.240
+//
+var static = require('node-static');
+
+//
+// Create a node-static server instance to serve the './public' folder
+//
+var connect = require('connect');
+var serveStatic = require('serve-static');
+connect().use(serveStatic(__dirname)).listen(8080);
+
+console.log('listenting on port 8080 for NODE-STATIC')
+
+
+
