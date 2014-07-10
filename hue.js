@@ -1,6 +1,6 @@
 
 
-var hueClass = function (){
+var hue = function (){
 
     this.hue = require("node-hue-api"),
     this.HueApi = this.hue.HueApi,
@@ -48,30 +48,33 @@ var hueClass = function (){
             .then(this.displayResult)
             .fail(this.displayError)
             .done();
-    }    
+    };   
 
 
     //  Cycles through all the colors
     //
     this.party = function(){
+        var sleepTime = 0
 
         for (var i = 0; i < 360; i++) {
 
                 console.log(i);
                 this.state.hsl(i,100,20);
-                setTimeout(this.setState(), (2000*i));
+                sleepTime = 300 * i;
+                setTimeout(function(){this.setState}, sleepTime);
 
                 
         }
-    }
+    };
 
 };
 
 
-
+/*
 var bulb = new hueClass();
 
 bulb.party();
 bulb.state.hsl(10,100,10);
 bulb.setState();
 
+*/
