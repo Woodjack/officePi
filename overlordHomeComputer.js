@@ -28,8 +28,6 @@ io.sockets.on('connection', function (socket) {
 
 
 
-
-
 //  THIS IS FOR THE HOME Automation Service
 //  
 //		LISTENING ON PORT 5000
@@ -38,22 +36,35 @@ io.sockets.on('connection', function (socket) {
 var homeComputer = require('socket.io').listen(5000);
 
 homeComputer.sockets.on('connection', function (socket) {
- 
-
+  var huejs = require('./hue');
+  var newhue = new huejs();
+  newhue.setbulb(5,100,10);
+  //
   //  CHECKIN THE USER WHEN THE CONNECT
   //
-  socket.on('checkIn', function(data) {
-    console.log('  -- User checked into HOME COMPUTER: ' + data);
+  socket.on('check in', function(data) {
+    console.log('  -- User checked into HOME COMPUTER: ');
+    console.log(data);
+    //hue.hue.setbulb(10,100,80);
   });
-
-
+  //
   //  VOICE COMMAND
   //
-  socket.on('voice Command', function(data) {
-  	console.log( ' -- user sent a voice command' )
+  socket.on('voice command', function(data) {
+  	console.log( ' -- user sent a voice command' );
+    data = data.toLowerCase();
+    console.log( data );
+    //
+    //  hue.hue.setbulb(200,100,30);
+    //
+    if (data.match('jack')) {
+      console.log('  THEY SAID JACK!!!! ')
+        
+    } else if (data.match('justin')) {
+        console.log('JUSTIN WINS! ')
+        newhue.setbulb(100,100,80)   
+    }
   });
-
-
 });
 
 

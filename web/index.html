@@ -4,27 +4,40 @@
  <link href="semantic.css" rel="stylesheet" type="text/css" />
 <body>
 
-
-
   <h3 class="ui center aligned huge header">
     What can I do for you?
   </h3>
 
-
-
 </body>
 
+<script src="/socket.io/socket.io.js"></script>
+
 <script type="text/javascript">
+
+
+
+//  SOCKET STUFF *******
+//
+	var socket = io(':5000');
+	socket.emit('check in', navigator.appVersion);
+	socket.emit('whats my ip')
+	console.log(navigator)
+
+
+
+
+//  VOICE STUFF *******
+//
 	var recognition = new webkitSpeechRecognition();
 	recognition.continuous = true;
 	recognition.interimResults = true;
 	recognition.onresult = function(event) {
-	  var resultsarray = event.results[0];
-	  console.log(resultsarray[ resultsarray.length-1 ].transcript);
+	  var resultsarray = event.results[ (event.results.length -1) ];
+	  console.log(resultsarray[0].transcript)
+	  socket.emit('voice command', resultsarray[0].transcript)
 	}
 	recognition.start();
-	console.log('listening now!')
-
 
 </script>
+
 </html>
