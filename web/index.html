@@ -11,5 +11,20 @@
   </h3>
 
 
+
 </body>
+
+<script type="text/javascript">
+	var recognition = new webkitSpeechRecognition();
+	recognition.continuous = true;
+	recognition.interimResults = true;
+	recognition.onresult = function(event) {
+	  var resultsarray = event.results[0];
+	  console.log(resultsarray[ resultsarray.length-1 ].transcript);
+	}
+	recognition.start();
+	console.log('listening now!')
+
+
+</script>
 </html>
