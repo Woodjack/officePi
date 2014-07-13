@@ -1,52 +1,112 @@
 
 
-var hueClass = function (){
-    console.log('checkpoint');
-    this.hue = require("node-hue-api");
-    this.myHueApi = this.hue.HueApi;
-    this.mylightState = this.hue.lightState;
-    this.hueIP = "10.0.1.205";
-    this.username = "newdeveloper";
-    this.api = new this.myHueApi(this.hueIP, this.username);
-    this.state= this.mylightState.create();
+module.exports  = function (){
+
+    this.hue = require("node-hue-api"),
+    this.HueApi = this.hue.HueApi,
+    this.lightState = this.hue.lightState;
+
+
 
     this.displayResult = function(result) {
-        console.log(JSON.stringify(result, null, 2));
+        console.log(result);
     };
 
-    
-};
+    this.displayError = function(err) {
+        console.error(err);
+    };
 
-var bulb = new hueClass();
+    this.host = "10.0.1.205",
+        this.username = "newdeveloper",
+        this.api = new this.HueApi(this.host, this.username),
+        this.state = this.lightState.create();
 
+ 
+    //  SETS THE BULB STATE AND THEN UPDATES IT
+    //
+    this.setbulb = function(hue, sat, bri){
+        this.state.hsl(hue,sat,bri);
+        this.setState();
 
-hue.turnOn = function (){
-    console.log(' line 17');
-    //  set light state
-    this.api.setLightState(3, state.on().brightness(100).rgb(255,0,0))
-        .then(displayResult)
-        .done();
+    }
 
-    //  set light state
-    this.api.setLightState(2, state)
-        .then(displayResult)
-        .done();
-
-    console.log(' finished turning on!');
-    return('it turned on');
-};
-
-hue.turnOff = function (){
-    this.api.setLightState(3, this.state.off())
-        .then(this.displayResult)
-        .done();
+    //this.bob(){
+   //     console.log('BOBOBOBOBOBOBOBOB')
+   // }
 
 
+    this.setState = function(){
+        console.log(' updating bulb')
+        this.api.setLightState(2, this.state)
+            .then(this.displayResult)
+            .fail(this.displayError)
+            .done();
+
+        // Now turn off the lamp
+        this.api.setLightState(3, this.state)
+            .then(this.displayResult)
+            .fail(this.displayError)
+            .done();
+    };   
+
+
+    //  Cycles through all the colors
+    //
+    this.party = function(){
+        var sleepTime = 0
+
+        for (var i = 0; i < 360; i++) {
+
+                console.log(i);
+                this.state.hsl(i,100,20);
+                sleepTime = 300 * i;
+                setTimeout(function(){this.setState}, sleepTime);
+
+                
+        }
+    };
+    //  returns the properties of bulb
+    //
+    this.parj = function(){
+        var sleepTime = 0
+
+        for (var i = 0; i < 360; i++) {
+
+                console.log(i);
+                this.state.hsl(i,100,20);
+                sleepTime = 300 * i;
+                setTimeout(function(){this.setState}, sleepTime);
+
+                
+        }
+    };    
+
+
+
+    //  INITIALIZER
+    //
+    //  Turn the bulbs onto a low red
+    //
+    this.state.on().hsl(200, 100, 20)
+
+    // Set the lamp with id '2' to on
+    //
     this.api.setLightState(2, this.state)
         .then(this.displayResult)
+        .fail(this.displayError)
         .done();
+
+    // Now turn off the lamp
+    //
+    this.api.setLightState(3, this.state)
+        .then(this.displayResult)
+        .fail(this.displayError)
+        .done();  
+
 };
 
-
-
-bulb.turnOn();
+/*
+var bulb = new hue();
+bulb.state.hsl(10,100,10);
+bulb.setState();
+*/

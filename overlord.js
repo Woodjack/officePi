@@ -28,8 +28,6 @@ io.sockets.on('connection', function (socket) {
 
 
 
-
-
 //  THIS IS FOR THE HOME Automation Service
 //  
 //		LISTENING ON PORT 5000
@@ -38,18 +36,128 @@ io.sockets.on('connection', function (socket) {
 var homeComputer = require('socket.io').listen(5000);
 
 homeComputer.sockets.on('connection', function (socket) {
- 
-//  CHECKIN THE USER WHEN THE CONNECT
-//
-  socket.on('checkIn', function(data) {
-    console.log('  -- User checked into HOME COMPUTER: ' + data);
-    // Sends message to the connected client
+  var huejs = require('./hue');
+  var newhue = new huejs();
+  newhue.setbulb(5,100,10);
+  //
+  //  CHECKIN THE USER WHEN THE CONNECT
+  //
+  socket.on('check in', function(data) {
+    console.log('  -- User checked into HOME COMPUTER: ');
+    console.log(data);
+    //hue.hue.setbulb(10,100,80);
+
+
+    console.log('party time ')
+
+    
+    });
+
+
+
+
+
+
+
+
+  //
+  //  VOICE COMMAND
+  //
+  socket.on('voice command', function(data) {
+  	console.log( ' -- user sent a voice command' );
+    data = data.toLowerCase();
+    console.log( data );
     //
+    //  hue.hue.setbulb(200,100,30);
+    //
+    if (data.match('jack')) {
+      console.log('  THEY SAID JACK!!!! ')
+      newhue.setbulb(10,100,80)
+        
+    } else if (data.match('justin')) {
+        console.log('JUSTIN WINS! ')
+        newhue.setbulb(100,100,80)   
+    }
+    else if (data.match('ben')) {
+        console.log('ben is a mechwarrior! ')
+        newhue.setbulb(240,100,100)   
+    }
+    else if (data.match('armante')) {
+        console.log('armante WINS! ')
+        newhue.setbulb(50,100,80)   
+    }
+    else if (data.match('carlos')) {
+        console.log('carlos WINS! ')
+        newhue.setbulb(150,100,80)   
+    }
+    else if (data.match('bright')) {
+        console.log(' make it brighter ')
+        newhue.setbulb(150,100,80)   
+    }
+    else if (data.match('party')) {
+        console.log('party time ')
+        for (var i = 0; i < 360; i++) {
+          console.log(i)
+          setTimeout(function(){
+            console.log(i)
+            newhue.setbulb(i,100,70)
+          },
+          (4000*i));
+        };
+           
+    }
 
   });
-
-  socket.on('')
-
-
-
 });
+
+
+
+
+
+
+
+
+
+
+
+
+//  THIS IS FOR THE HOME Automation Service
+//
+//		HTTP FILES
+//  
+//		LISTENING ON PORT 80
+//		10.0.1.240
+//
+var static = require('node-static');
+
+//
+// Create a node-static server instance to serve the './public' folder
+//
+var connect = require('connect');
+var serveStatic = require('serve-static');
+connect().use(serveStatic(__dirname)).listen(8080);
+
+console.log(__dirname)
+console.log('/web/index.html')
+console.log(__dirname + '/web/index.html')
+console.log('listenting on port 8080 for NODE-STATIC')
+
+//
+//
+//  PRINTS THE SERVER IP ADDRESS
+//
+//
+var os=require('os');
+var ifaces=os.networkInterfaces();
+for (var dev in ifaces) {
+  var alias=0;
+  ifaces[dev].forEach(function(details){
+    if (details.family=='IPv4') {
+      console.log(dev+(alias?':'+alias:''),details.address);
+      ++alias;
+    }
+  });
+}
+
+
+
