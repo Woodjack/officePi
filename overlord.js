@@ -36,7 +36,7 @@ io.sockets.on('connection', function (socket) {
 var homeComputer = require('socket.io').listen(5000);
 
 homeComputer.sockets.on('connection', function (socket) {
-  var huejs = require('/jsLibrary/hue');
+  var huejs = require('./jsLibrary/hue');
   var newhue = new huejs();
   newhue.setbulb(5,100,10);
   //
