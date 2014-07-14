@@ -135,11 +135,10 @@ var static = require('node-static');
 //
 var connect = require('connect');
 var serveStatic = require('serve-static');
-connect().use(serveStatic(__dirname)).listen(8080);
+var webdir = __dirname + '/web'
+connect().use(serveStatic(webdir)).listen(8080);
 
-console.log(__dirname)
-console.log('/web/index.html')
-console.log(__dirname + '/web/index.html')
+console.log(webdir)
 console.log('listenting on port 8080 for NODE-STATIC')
 
 //
