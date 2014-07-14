@@ -92,6 +92,10 @@ homeComputer.sockets.on('connection', function (socket) {
         console.log(' make it brighter ')
         newhue.setbulb(150,100,80)   
     }
+    else if (data.match('off')) {
+        console.log('  TURNING OFF! ')
+        newhue.setbulb(100,100,0)   
+    }
     else if (data.match('party')) {
         console.log('party time ')
         for (var i = 0; i < 360; i++) {
