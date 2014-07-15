@@ -12,7 +12,3 @@ commands include:
 
 ***LIGHTS***
   
-  socket.emit('updateLED, {color:'red'});
-  
-***OTHER CONTROLS***
- make light turn red
