@@ -41,7 +41,7 @@ homeComputer.sockets.on('connection', function (socket) {
   socket.on('check in', function(data) {
     console.log('  -- User checked into HOME COMPUTER: ');
     console.log(data);
-    newhue.party;
+    newhue.party();
     
     });
 

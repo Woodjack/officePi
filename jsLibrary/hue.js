@@ -2,11 +2,20 @@
 
 module.exports  = function (){
 
-    this.hue = require("node-hue-api"),
-    this.HueApi = this.hue.HueApi,
-    this.lightState = this.hue.lightState;
+    this.hue = require("node-hue-api")
+    this.HueApi = this.hue.HueApi
+    this.state = this.hue.lightState.create()
+    this.partyCounter = 0
+    this.host = "10.0.1.205"
+    this.username = "newdeveloper"
+    this.api = new this.HueApi(this.host, this.username)
+    
 
 
+    this.displayStatus = function(status) {
+        console.log(JSON.stringify(status.state.hue, null, 2));
+        this.hue = status.state.hue
+    };
 
     this.displayResult = function(result) {
         console.log(result);
@@ -15,11 +24,6 @@ module.exports  = function (){
     this.displayError = function(err) {
         console.error(err);
     };
-
-    this.host = "10.0.1.205",
-        this.username = "newdeveloper",
-        this.api = new this.HueApi(this.host, this.username),
-        this.state = this.lightState.create();
 
  
     //  SETS THE BULB STATE AND THEN UPDATES IT
@@ -30,14 +34,14 @@ module.exports  = function (){
         this.state.hsl( data.hue, data.sat, data.bri) ;
         this.setState();
         console.log('finished changing bulb')
-    }
+    };
     //  SETS THE BULB STATE AND THEN UPDATES IT
     //  *** WITH DATA
     //
     this.setbulbhsl = function(hue, sat, bri){
         this.state.hsl( hue, sat, bri) ;
         this.setState();
-    }
+    };
 
     //this.bob(){
    //     console.log('BOBOBOBOBOBOBOBOB')
@@ -63,43 +67,21 @@ module.exports  = function (){
     //
     this.party = function(){
         console.log('****')
-        consol.log(' ITS PARTY TIME -----------------')
-        var sleepTime = 0
+        console.log(' ITS PARTY TIME -----------------')
+        this.state.effect('colorloop')
+        
+        
 
-        for (var i = 0; i < 360; i++) {
-
-                
-                //this.state.hsl(i,100,20);
-                sleepTime = 300 * i;
-                console(sleepTime)
-                setTimeout(function(){console.log(i)}, sleepTime);
-
-                
-        }
     };
     //  returns the properties of bulb
     //
-    this.properties = function(){
-        var sleepTime = 0
-
-        for (var i = 0; i < 360; i++) {
-
-                console.log(i);
-                this.state.hsl(i,100,20);
-                sleepTime = 300 * i;
-                setTimeout(function(){this.setState}, sleepTime);
-
-                
-        }
-    };    
-
 
 
     //  INITIALIZER
     //
     //  Turn the bulbs onto a low red
     //
-    this.state.on().hsl(200, 100, 20)
+    this.state.on().hsl(200, 100, 100)
 
     // Set the lamp with id '2' to on
     //
@@ -113,7 +95,15 @@ module.exports  = function (){
     this.api.setLightState(3, this.state)
         .then(this.displayResult)
         .fail(this.displayError)
-        .done();  
+        .done();
+    
+
+    this.api.lightStatus(3)
+    .then(this.displayStatus)
+    .done();
+
+
+    setTimeout(this.party, 5000)
 
 };
 
