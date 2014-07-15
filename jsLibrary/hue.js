@@ -23,11 +23,20 @@ module.exports  = function (){
 
  
     //  SETS THE BULB STATE AND THEN UPDATES IT
+    //  *** WITH DATA
     //
-    this.setbulb = function(hue, sat, bri){
-        this.state.hsl(hue,sat,bri);
+    this.setbulb = function(data){
+        console.log('starting setbulb')
+        this.state.hsl( data.hue, data.sat, data.bri) ;
         this.setState();
-
+        console.log('finished changing bulb')
+    }
+    //  SETS THE BULB STATE AND THEN UPDATES IT
+    //  *** WITH DATA
+    //
+    this.setbulbhsl = function(hue, sat, bri){
+        this.state.hsl( hue, sat, bri) ;
+        this.setState();
     }
 
     //this.bob(){
@@ -53,21 +62,24 @@ module.exports  = function (){
     //  Cycles through all the colors
     //
     this.party = function(){
+        console.log('****')
+        consol.log(' ITS PARTY TIME -----------------')
         var sleepTime = 0
 
         for (var i = 0; i < 360; i++) {
 
-                console.log(i);
-                this.state.hsl(i,100,20);
+                
+                //this.state.hsl(i,100,20);
                 sleepTime = 300 * i;
-                setTimeout(function(){this.setState}, sleepTime);
+                console(sleepTime)
+                setTimeout(function(){console.log(i)}, sleepTime);
 
                 
         }
     };
     //  returns the properties of bulb
     //
-    this.parj = function(){
+    this.properties = function(){
         var sleepTime = 0
 
         for (var i = 0; i < 360; i++) {

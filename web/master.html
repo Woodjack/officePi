@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+ <script src = "/jquery/jquery-2.1.1.min.js"></script>
+ <script src = "/nouislider/jquery.nouislider.min.js"></script>
+ <link href='http://refreshless.com/nouislider/source/jquery.nouislider.css' rel='stylesheet' type='text/css'>
+
 
  <link href="semantic.css" rel="stylesheet" type="text/css" />
 <body>
@@ -7,8 +11,23 @@
   <h3 class="ui center aligned huge header">
     What can I do for you?
   </h3>
+  <br>
+<section>
+	<article>
+		hue <span id = "hueNum"> </span> 
+		<div id = "hue" class = "bulbslider"></div><br> 
+
+		sat <span id = "satNum">  </span>
+		<div id = "sat" class = "bulbslider"></div><br>
+
+		bri  <span id = "briNum"> </span> 
+		<div id = "bri" class = "bulbslider"></div><br>
+	</article>
+</section>
 
   
+
+
 
 </body>
 
@@ -18,6 +37,7 @@
 
 
 
+//  ***********************
 //  SOCKET STUFF *******
 //
 	var socket = io(':5000');
@@ -27,7 +47,7 @@
 
 
 
-
+//  ***********************
 //  VOICE STUFF *******
 //
 	var recognition = new webkitSpeechRecognition();
@@ -39,6 +59,60 @@
 	  socket.emit('voice command', resultsarray[0].transcript)
 	}
 	recognition.start();
+	console.log('  voice stuff is starting');
+
+
+
+//  ***********************
+//    HUE API SLIDER STUFF
+//   uses noUIslider js package to create the objects
+//
+//
+	$("#hue").noUiSlider({
+		start: 0,
+		step: 1,
+		range: {
+			'min': 0,
+			'max': 359
+		}
+		
+	});
+	$("#sat").noUiSlider({
+		start: 0,
+		step: 1,
+		range: {
+			'min': 0,
+			'max': 100
+		}
+	});
+	$("#bri").noUiSlider({
+		start: 0,
+		step: 1,
+		range: {
+			'min': 0,
+			'max': 100
+		}
+	});
+
+	//  Sets the bulb slider HTML class to be updated on slide function
+	//
+	$(".bulbslider").on({
+		set: function(){
+			// create a huebulb state and emit it to server
+			//
+			var data = {};
+			data.hue = parseInt($('#hue').val())
+			data.sat = parseInt($('#sat').val())
+			data.bri = parseInt($('#bri').val())
+
+			console.log(data);
+			
+			// Send the updateBulb message to webserver
+			//
+			socket.emit('update bulb', data);
+		}
+	});
+
 
 </script>
 
