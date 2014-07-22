@@ -11,16 +11,6 @@ console.log(' listening: http://localhost:7000');
 
 // *****************************************
 //
-//   SET UP SOCKET.IO
-//  Create a socket.io server object and listen on port 7000 
-//
-var io = require('socket.io').listen(7000);
-
-
-
-
-// *****************************************
-//
 //  THIS IS FOR THE HOME Automation Service
 //  
 //		LISTENING ON PORT 5000
@@ -122,6 +112,7 @@ homeComputer.sockets.on('connection', function (socket) {
 //
 var static = require('node-static');
 
+
 //
 // Create a node-static server instance to serve the './public' folder
 //
@@ -132,6 +123,7 @@ connect().use(serveStatic(webdir)).listen(8080);
 
 console.log(webdir)
 console.log('listenting on port 8080 for NODE-STATIC')
+
 
 //
 //
