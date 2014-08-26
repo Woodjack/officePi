@@ -12,7 +12,7 @@ console.log(' listening: http://localhost:7000');
 // *****************************************
 //
 //  THIS IS FOR THE HOME Automation Service
-//  
+//
 //		LISTENING ON PORT 5000
 //		10.0.1.240
 //
@@ -32,7 +32,7 @@ homeComputer.sockets.on('connection', function (socket) {
     console.log('  -- User checked into HOME COMPUTER: ');
     console.log(data);
     newhue.party();
-    
+
     });
 
   //
@@ -43,8 +43,12 @@ homeComputer.sockets.on('connection', function (socket) {
     console.log(data);
     newhue.setbulb(data);
 
-    
+
     });
+
+
+
+    console.log('hi delete me')
 
 
 
@@ -62,35 +66,39 @@ homeComputer.sockets.on('connection', function (socket) {
     if (data.match('jack')) {
       console.log('  THEY SAID JACK!!!! ')
       newhue.setbulbhsl(10,100,80)
-        
+
     } else if (data.match('justin')) {
         console.log('JUSTIN WINS! ')
-        newhue.setbulbhsl(100,100,80)   
+        newhue.setbulbhsl(100,100,80)
     }
     else if (data.match('ben')) {
         console.log('ben is a mechwarrior! ')
-        newhue.setbulbhsl(240,100,100)   
+        newhue.setbulbhsl(240,100,100)
     }
     else if (data.match('armante')) {
         console.log('armante WINS! ')
-        newhue.setbulbhsl(50,100,80)   
+        newhue.setbulbhsl(50,100,80)
     }
     else if (data.match('carlos')) {
         console.log('carlos WINS! ')
-        newhue.setbulbhsl(150,100,80)   
+        newhue.setbulbhsl(150,100,80)
     }
     else if (data.match('bright')) {
         console.log(' make it brighter ')
-        newhue.setbulbhsl(150,100,80)   
+        newhue.setbulbhsl(150,100,80)
     }
     else if (data.match('off')) {
         console.log('  TURNING OFF! ')
-        newhue.setbulbhsl(100,100,0)   
+        newhue.setbulbhsl(100,100,0)
     }
     else if (data.match('party')) {
         console.log('party time ')
         newhue.party;
-        };   
+        };
+    else if (data.match('blue')) {
+        console.log(' color Blue time! ')
+        newhue.party;
+        };
     });
 });
 
@@ -106,7 +114,7 @@ homeComputer.sockets.on('connection', function (socket) {
 //  THIS IS FOR THE HOME Automation Service
 //
 //		HTTP FILES
-//  
+//
 //		LISTENING ON PORT 80
 //		10.0.1.240
 //
@@ -119,7 +127,7 @@ var static = require('node-static');
 var connect = require('connect');
 var serveStatic = require('serve-static');
 var webdir = __dirname + '/web'
-connect().use(serveStatic(webdir)).listen(8080);
+connect().use(serveStatic(webdir)).listen(8888);
 
 console.log(webdir)
 console.log('listenting on port 8080 for NODE-STATIC')
@@ -143,6 +151,3 @@ for (var dev in ifaces) {
 }
 
 //**************************************
-
-
-

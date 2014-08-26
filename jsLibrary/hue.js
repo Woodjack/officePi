@@ -1,14 +1,12 @@
+var hue = require("node-hue-api")
+var HueApi = ueApi
+var state = hue.lightState.create()
+var partyCounter = 0
+var host = "10.0.1.205"
+var username = "newdeveloper"
+var api = new HueApi(host, username)
 
-
-module.exports hue: {
-
-    hue: require("node-hue-api")
-    HueApi: ueApi
-    state: hue.lightState.create()
-    partyCounter: 0
-    host: "10.0.1.205"
-    username: "newdeveloper"
-    api: new HueApi(host, username)
+module.exports hue: {  
     
 
 
