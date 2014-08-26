@@ -95,11 +95,6 @@ homeComputer.sockets.on('connection', function (socket) {
         console.log('party time ')
         newhue.party;
         };
-    else if (data.match('blue')) {
-        console.log(' color Blue time! ')
-        newhue.party;
-        };
-    });
 });
 
 
