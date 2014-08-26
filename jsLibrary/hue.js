@@ -62,18 +62,35 @@ var self = module.exports = {
 
   party: function()
   {
-    console.log('  -- starting party mode!');
-    state.effect('colorloop');
-    api.setLightState(2,state).then(displayResult).fail(displayError).done();
-    api.setLightState(3,state).then(displayResult).fail(displayError).done();
+    if(partyCounter == 0)
+      {
+        console.log('  -- starting party mode!');
+        state.effect('colorloop');
+        api.setLightState(2,state).then(displayResult).fail(displayError).done();
+        api.setLightState(3,state).then(displayResult).fail(displayError).done();
+        partyCounter = 1;
+      }
+    else
+      {
+        console.log('  --THE PARTY IS ALREADY GOING!')
+      }
+
   },
 
   noParty: function()
   {
-    console.log('  -- stoping party mode!');
-    state.effect('none');
-    api.setLightState(2,state).then(displayResult).fail(displayError).done();
-    api.setLightState(3,state).then(displayResult).fail(displayError).done();
+    if(partyCounter == 1)
+      {
+        console.log('  -- stoping party mode!');
+        state.effect('none');
+        api.setLightState(2,state).then(displayResult).fail(displayError).done();
+        api.setLightState(3,state).then(displayResult).fail(displayError).done();
+        partyCounter = 0
+      }
+    else
+      {
+        console.log('  --The party is already over.... so sad')
+      }
   },
 
   setBulb: function(hue, sat, bri)
