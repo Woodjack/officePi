@@ -5,7 +5,7 @@
 //
 console.log(' ------- officePI ------- ');
 console.log(' **      overlord    ** ');
-console.log(' listening: http://localhost:7000');
+console.log(' listening: http://localhost:8888');
 
 
 
@@ -13,7 +13,7 @@ console.log(' listening: http://localhost:7000');
 //
 //  THIS IS FOR THE HOME Automation Service
 //
-//		LISTENING ON PORT 5000
+//		LISTENING ON PORT 5555
 //		10.0.1.240
 //
 var homeComputer = require('socket.io').listen(5555);
@@ -23,7 +23,7 @@ var homeComputer = require('socket.io').listen(5555);
 //
 homeComputer.sockets.on('connection', function (socket) {
   var newhue = require('./jsLibrary/hue');
-  newhue.setBulb(5,100,10);
+  //newhue.setBulb(5,100,10);
 
   //
   //  CHECKIN THE USER WHEN THE CONNECT
@@ -88,12 +88,12 @@ homeComputer.sockets.on('connection', function (socket) {
         console.log('party time is OVER')
         newhue.noParty();
     }
-    else if (data.match('on')) {
-        console.log('party time ')
+    else if (data.match('turn on')) {
+        console.log('turning on ')
         newhue.turnOn();
     }
-    else if (data.match('off')) {
-        console.log('party time ')
+    else if (data.match('turn off')) {
+        console.log('turning off ')
         newhue.turnOff();
     }
     else if (data.match('blue')) {
@@ -107,7 +107,15 @@ homeComputer.sockets.on('connection', function (socket) {
     else if (data.match('white')) {
         console.log('white ')
         newhue.setBulb(180,100,80)
-    };
+    }
+    else if (data.match('dim')) {
+        console.log('dimming ')
+        newhue.dimBulb()
+    }
+    else if (data.match('bright')) {
+        console.log('bright ')
+        newhue.brightBulb()
+    }
 });
 });
 

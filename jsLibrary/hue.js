@@ -6,7 +6,6 @@
 var hue = require("node-hue-api")
 var HueApi = hue.HueApi
 var state = hue.lightState.create()
-var partyCounter = 0
 var host =  "10.0.1.205"
 var username ="newdeveloper"
 var api = new HueApi(host, username)
@@ -18,9 +17,10 @@ var lightSwitch = false
 
 
 
-function displayStatusf(status)
+function displayStatus(status)
 {
-    console.log(JSON.stringify(status.state.hue, null, 2));
+  //console.log(status)
+    //console.log(JSON.stringify(status.state.hue, null, 2));
 };
 
 function displayResult(result)
@@ -33,6 +33,26 @@ function displayError(err)
     console.error(err);
 }
 
+var partyCounter = 0;
+
+api.lightStatus(3)
+    .then(function(status)
+    {
+      var effect = status.state.effect
+      console.log(effect)
+      console.log(typeof effect)
+      if(effect == "none"){
+        console.log('STATUS - party is currently off')
+        partCounter = 0;
+      }
+      else{
+        console.log('STATUS - party is currently on')
+        partyCounter = 1;
+      }
+      console.log(partyCounter)
+
+    })
+    .done();
 
 
 
@@ -46,51 +66,54 @@ var self = module.exports = {
   //
   turnOn: function()
   {
-      state.on();
+      state = hue.lightState.create().on();
       api.setLightState(2,state).then(displayResult).fail(displayError).done();
       api.setLightState(3,state).then(displayResult).fail(displayError).done();
+      lightSwitch = true
 
   },
 
   turnOff: function()
   {
-      state.off();
+      state = hue.lightState.create().off();
       api.setLightState(2,state).then(displayResult).fail(displayError).done();
       api.setLightState(3,state).then(displayResult).fail(displayError).done();
+      lightSwitch = false
+
+  },
+  brightBulb: function()
+  {
+      state = hue.lightState.create().brightness(90);
+      api.setLightState(2,state).then(displayResult).fail(displayError).done();
+      api.setLightState(3,state).then(displayResult).fail(displayError).done();
+      lightSwitch = false
+
+  },
+  dimBulb: function()
+  {
+      state = hue.lightState.create().brightness(15);
+      api.setLightState(2,state).then(displayResult).fail(displayError).done();
+      api.setLightState(3,state).then(displayResult).fail(displayError).done();
+      lightSwitch = false
 
   },
 
   party: function()
   {
-    if(partyCounter == 0)
-      {
-        console.log('  -- starting party mode!');
-        state.effect('colorloop');
-        api.setLightState(2,state).then(displayResult).fail(displayError).done();
-        api.setLightState(3,state).then(displayResult).fail(displayError).done();
-        partyCounter = 1;
-      }
-    else
-      {
-        console.log('  --THE PARTY IS ALREADY GOING!')
-      }
-
+    state = hue.lightState.create().effect('colorloop');
+    api.setLightState(2,state).then(displayResult).fail(displayError).done();
+    api.setLightState(3,state).then(displayResult).fail(displayError).done();
+    partyCounter = 1;
   },
 
   noParty: function()
   {
-    if(partyCounter == 1)
-      {
-        console.log('  -- stoping party mode!');
-        state.effect('none');
-        api.setLightState(2,state).then(displayResult).fail(displayError).done();
-        api.setLightState(3,state).then(displayResult).fail(displayError).done();
-        partyCounter = 0
-      }
-    else
-      {
-        console.log('  --The party is already over.... so sad')
-      }
+      console.log('  -- stoping party mode!');
+      state = hue.lightState.create().effect('none');
+      api.setLightState(2,state).then(displayResult).fail(displayError).done();
+      api.setLightState(3,state).then(displayResult).fail(displayError).done();
+      partyCounter = 0
+
   },
 
   setBulb: function(hue, sat, bri)
