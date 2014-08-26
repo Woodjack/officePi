@@ -65,38 +65,38 @@ homeComputer.sockets.on('connection', function (socket) {
     //
     if (data.match('jack')) {
       console.log('  THEY SAID JACK!!!! ')
-      newhue.setbulbhsl(10,100,80)
+      newhue.setBulb(10,100,80)
 
     } else if (data.match('justin')) {
         console.log('JUSTIN WINS! ')
-        newhue.setbulbhsl(100,100,80)
+        newhue.setBulb(100,100,80)
     }
     else if (data.match('ben')) {
         console.log('ben is a mechwarrior! ')
-        newhue.setbulbhsl(240,100,100)
+        newhue.setBulb(240,100,100)
     }
     else if (data.match('armante')) {
         console.log('armante WINS! ')
-        newhue.setbulbhsl(50,100,80)
+        newhue.setBulb(50,100,80)
     }
     else if (data.match('carlos')) {
         console.log('carlos WINS! ')
-        newhue.setbulbhsl(150,100,80)
+        newhue.setBulb(150,100,80)
     }
     else if (data.match('bright')) {
         console.log(' make it brighter ')
-        newhue.setbulbhsl(150,100,80)
+        newhue.setBulb(150,100,80)
     }
     else if (data.match('off')) {
         console.log('  TURNING OFF! ')
-        newhue.setbulbhsl(100,100,0)
+        newhue.setBulb(100,100,0)
     }
     else if (data.match('party')) {
         console.log('party time ')
         newhue.party;
         };
 });
-
+});
 
 
 
