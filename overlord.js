@@ -16,7 +16,7 @@ console.log(' listening: http://localhost:7000');
 //		LISTENING ON PORT 5000
 //		10.0.1.240
 //
-var homeComputer = require('socket.io').listen(5000);
+var homeComputer = require('socket.io').listen(5555);
 
 //
 //
@@ -138,7 +138,7 @@ var webdir = __dirname + '/web'
 connect().use(serveStatic(webdir)).listen(8888);
 
 console.log(webdir)
-console.log('listenting on port 8080 for NODE-STATIC')
+console.log('listenting on port 8888 for NODE-STATIC')
 
 
 //
