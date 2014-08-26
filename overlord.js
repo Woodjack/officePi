@@ -22,16 +22,15 @@ var homeComputer = require('socket.io').listen(5000);
 //
 //
 homeComputer.sockets.on('connection', function (socket) {
-  var huejs = require('./jsLibrary/hue');
-  var newhue = new huejs();
-  newhue.setbulbhsl(5,100,10);
+  var newhue = require('./jsLibrary/hue');
+  newhue.setBulb(5,100,10);
+
   //
   //  CHECKIN THE USER WHEN THE CONNECT
   //
   socket.on('check in', function(data) {
     console.log('  -- User checked into HOME COMPUTER: ');
     console.log(data);
-    newhue.party();
 
     });
 
@@ -41,27 +40,21 @@ homeComputer.sockets.on('connection', function (socket) {
   socket.on('update bulb', function(data) {
     console.log('  -- User updating bulb: ');
     console.log(data);
-    newhue.setbulb(data);
+    newhue.setBulb(data);
 
 
     });
-
-
-
-    console.log('hi delete me')
-
-
 
 
   //
   //  VOICE COMMAND
   //
   socket.on('voice command', function(data) {
-  	console.log( ' -- user sent a voice command' );
+  	console.log( '******* user sent a voice command' );
     data = data.toLowerCase();
     console.log( data );
     //
-    //  hue.hue.setbulb(200,100,30);
+    //  hue.hue.setBulb(200,100,30);
     //
     if (data.match('jack')) {
       console.log('  THEY SAID JACK!!!! ')
@@ -69,7 +62,7 @@ homeComputer.sockets.on('connection', function (socket) {
 
     } else if (data.match('justin')) {
         console.log('JUSTIN WINS! ')
-        newhue.setBulb(100,100,80)
+        newhue.setBulb(330,100,90)
     }
     else if (data.match('ben')) {
         console.log('ben is a mechwarrior! ')
@@ -87,14 +80,34 @@ homeComputer.sockets.on('connection', function (socket) {
         console.log(' make it brighter ')
         newhue.setBulb(150,100,80)
     }
-    else if (data.match('off')) {
-        console.log('  TURNING OFF! ')
-        newhue.setBulb(100,100,0)
-    }
-    else if (data.match('party')) {
+    else if (data.match('start the party')) {
         console.log('party time ')
-        newhue.party;
-        };
+        newhue.party();
+    }
+    else if (data.match('stop the party')) {
+        console.log('party time is OVER')
+        newhue.noParty();
+    }
+    else if (data.match('on')) {
+        console.log('party time ')
+        newhue.turnOn();
+    }
+    else if (data.match('off')) {
+        console.log('party time ')
+        newhue.turnOff();
+    }
+    else if (data.match('blue')) {
+        console.log('blue ')
+        newhue.setBulb(250,100,80)
+    }
+    else if (data.match('red')) {
+        console.log('red ')
+        newhue.setBulb(0,100,80)
+    }
+    else if (data.match('white')) {
+        console.log('white ')
+        newhue.setBulb(180,100,80)
+    };
 });
 });
 
