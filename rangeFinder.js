@@ -53,7 +53,7 @@ var pulse = function(){
     gpio.read(16, function(err, value) {
       if(err) throw err;
       starTime = Date.now();
-      if(value == 1) break;
+      if(value == 1){break;} 
     });
   }
 
@@ -61,7 +61,7 @@ var pulse = function(){
     gpio.read(16, function(err, value){
       if(err) throw err;
       stopTime = Date.now();
-      if(value == 0) break;
+      if(value == 0) {break;}
     })
   }
 
