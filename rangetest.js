@@ -10,4 +10,6 @@ var sensor = usonic.sensor(24, 23, 450);
 
 var distance = sensor();
 
-console.log('Distance:  ' + distance)
+setInterval(function(){
+  console.log(sensor())
+}, 1000)

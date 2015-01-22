@@ -13,7 +13,7 @@ var distance;
 gpio.open(16, "output", function(err) {        // Open pin 16 for output
   console.log('pin 16 ready for output')
 });
-
+console.log('debug')
 gpio.open(18, "input", function(err) {        // Open pin 16 for output
   console.log('pin 18 ready for input')
 });
@@ -76,7 +76,7 @@ var pulse = function(){
   gpio.write(16, 1, function(){
   })
 
-  time.sleep(1)
+  sleep(1)
 
   gpio.write(16, 0, function(){
     echoLoop(0);
