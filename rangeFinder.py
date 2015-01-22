@@ -38,6 +38,7 @@ GPIO.output(GPIO_TRIGGER, True)
 time.sleep(0.00001)
 GPIO.output(GPIO_TRIGGER, False)
 start = time.time()
+
 while GPIO.input(GPIO_ECHO)==0:
     start = time.time()
 

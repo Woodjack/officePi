@@ -1,9 +1,14 @@
 
 //// *****************************************
 //
-//  Calculates the range using ultrasonic range finder
+//  Calculates the range using ultraecho range finder
 //
 var gpio = require("pi-gpio");
+var starTime;
+var stopTime;
+var elapsed;
+var distance;
+
 
 gpio.open(16, "output", function(err) {        // Open pin 16 for output
   console.log('pin 16 ready for output')
@@ -29,51 +34,55 @@ function sleep(milliseconds) {
 
 
 
-gpio.read(16, function(err, value) {
-  if(err) throw err;
-  console.log(value);    // The current state of the pin
-});
+var echoLoop = function(direction){
+
+  if(direction == 0){
+    gpio.read(16, function(err, value) {
+      if(err) throw err;
+      starTime = Date.now();
+      if(value == 0){
+        echoLoop(0)
+      }
+      else{
+        echoLoop(1)
+      }
+    });
+  }
+  else{
+    gpio.read(16, function(err, value) {
+      if(err) throw err;
+      stopTime = Date.now();
+      if(value == 1){
+        echoLoop(1)
+      }
+      else{
+        elapsed = stopTime - starTime;
+        distance = elapsed *34000;
+        distance = distance/2;
+        console.log("Distance :  " + distance)
+      }
+    });
+
+  }
+
+
+  // Distance pulse travelled in that time is time
+  // multiplied by the speed of sound (cm/s)
+
+}
 
 var pulse = function(){
 
   gpio.write(16, 1, function(){
-
   })
 
   time.sleep(1)
 
-  gpio.write(16, 1, function(){
-
+  gpio.write(16, 0, function(){
+    echoLoop(0);
   })
-
-  var starTime = Date.now();
-  var stopTime;
-
-  while(true){
-    gpio.read(16, function(err, value) {
-      if(err) throw err;
-      starTime = Date.now();
-      if(value == 1){break;} 
-    });
-  }
-
-  while(true){
-    gpio.read(16, function(err, value){
-      if(err) throw err;
-      stopTime = Date.now();
-      if(value == 0) {break;}
-    })
-  }
-
-  var elapsed = stopTime-startTime;
-
-  // Distance pulse travelled in that time is time
-  // multiplied by the speed of sound (cm/s)
-  var distance = elapsed *34000;
-  distance = distance/2;
-
-  console.log("Distance :  " + distance)
 }
+
 
 
 gpio.write(16, 0, function(){
